@@ -1,20 +1,19 @@
-import 'package:flutter/material.dart';
-import 'screens/home_screen.dart';
-import 'screens/events_screen.dart';
-import 'screens/login_screen.dart'; // Importer le nouvel écran
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart'; // Assurez-vous que ce fichier existe et est généré par FlutterFire CLI
-
 /*
 * =========================================
 * FICHIER: lib/main.dart
 * RÔLE: Point d'entrée principal de l'application.
 * =========================================
 */
-Future<void> main() async {
+import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'screens/home_screen.dart';
+import 'screens/events_screen.dart';
+import 'screens/auth_wrapper.dart'; // Importer le nouvel AuthWrapper
+
+void main() async {
   // Assurez-vous d'initialiser Firebase avant de lancer l'app
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp();
   runApp(const Gnut06App());
 }
 
@@ -25,7 +24,6 @@ class Gnut06App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Gnut 06',
-      // Thème visuel de l'application
       theme: ThemeData(
         primarySwatch: Colors.blue,
         fontFamily: 'Inter',
@@ -47,7 +45,6 @@ class Gnut06App extends StatelessWidget {
   }
 }
 
-// Widget pour gérer la navigation principale (barre en bas)
 class MainNavigator extends StatefulWidget {
   const MainNavigator({super.key});
 
@@ -58,11 +55,10 @@ class MainNavigator extends StatefulWidget {
 class _MainNavigatorState extends State<MainNavigator> {
   int _selectedIndex = 0;
 
-  // Liste des écrans à afficher
   static const List<Widget> _widgetOptions = <Widget>[
     HomeScreen(),
     EventsScreen(),
-    LoginScreen(), // Ajouter le nouvel écran à la liste
+    AuthWrapper(), // Utiliser AuthWrapper pour l'onglet Profil
   ];
 
   void _onItemTapped(int index) {
@@ -79,11 +75,7 @@ class _MainNavigatorState extends State<MainNavigator> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Accueil'),
           BottomNavigationBarItem(icon: Icon(Icons.event), label: 'Événements'),
-          BottomNavigationBarItem(
-            // Ajouter le nouvel item de navigation
-            icon: Icon(Icons.person),
-            label: 'Profil',
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profil'),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.blue[800],

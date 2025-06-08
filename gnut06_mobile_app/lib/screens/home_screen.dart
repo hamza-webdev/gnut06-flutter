@@ -11,19 +11,20 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Gnut 06'),
-      ),
+      appBar: AppBar(title: const Text('Gnut 06')),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Container(
               color: Colors.blue[600],
               width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 48.0),
-              child: Column(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 24.0,
+                vertical: 48.0,
+              ),
+              child: const Column(
                 children: [
-                  const Text(
+                  Text(
                     "L'innovation au service de l'inclusion",
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -32,14 +33,11 @@ class HomeScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 16),
-                  const Text(
+                  SizedBox(height: 16),
+                  Text(
                     "Découvrez comment la technologie peut briser les barrières.",
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white70,
-                      fontSize: 16,
-                    ),
+                    style: TextStyle(color: Colors.white70, fontSize: 16),
                   ),
                 ],
               ),
@@ -57,26 +55,29 @@ class HomeScreen extends StatelessWidget {
                   MissionCard(
                     icon: Icons.visibility,
                     title: "Technologies Immersives",
-                    description: "Nous explorons le potentiel de la VR et de l'AR pour la rééducation et l'apprentissage.",
+                    description:
+                        "Nous explorons le potentiel de la VR et de l'AR pour la rééducation et l'apprentissage.",
                     color: Colors.blue,
                   ),
                   const SizedBox(height: 12),
                   MissionCard(
                     icon: Icons.group,
                     title: "Intégration Sociale",
-                    description: "Nos ateliers créent des lieux de rencontre, de partage et de lien social.",
+                    description:
+                        "Nos ateliers créent des lieux de rencontre, de partage et de lien social.",
                     color: Colors.green,
                   ),
-                   const SizedBox(height: 12),
-                   MissionCard(
+                  const SizedBox(height: 12),
+                  MissionCard(
                     icon: Icons.favorite,
                     title: "Épanouissement Personnel",
-                    description: "Offrir des expériences qui renforcent la confiance en soi et l'autonomie.",
+                    description:
+                        "Offrir des expériences qui renforcent la confiance en soi et l'autonomie.",
                     color: Colors.red,
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -117,7 +118,13 @@ class MissionCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                   const SizedBox(height: 4),
                   Text(description, style: TextStyle(color: Colors.grey[600])),
                 ],
