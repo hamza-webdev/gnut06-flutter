@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "39709551679",
+    "project_id": "gnut06-bh",
+    "storage_bucket": "gnut06-bh.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:39709551679:android:d51dab689c57759ebb9c8a",
+        "android_client_info": {
+          "package_name": "com.example.gnut06_mobile_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBIPS2mUmvuX1ycfbEmkXPW30ea_V9SaM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
