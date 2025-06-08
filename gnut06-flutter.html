@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gnut 06 - L'innovation pour l'inclusion</title>
+    <!-- Chosen Palette: "Bleu Inclusif" - Une palette douce et professionnelle basée sur des bleus apaisants, des gris neutres et une touche de vert pour l'action, créant une atmosphère de confiance et de technologie accessible. -->
+    <!-- Application Structure Plan: La structure est conçue comme une narration interactive qui guide l'utilisateur à travers l'histoire de Gnut 06. Elle commence par une introduction percutante (Hero), puis plonge dans le "pourquoi" (Notre Mission) avec trois piliers clairs. Ensuite, le "comment" (Nos Actions) est présenté de manière visuelle. La section "Notre Impact" utilise des graphiques pour prouver l'efficacité des actions de manière quantifiable. Enfin, les sections "Événements" et "Contact" servent d'appels à l'action clairs. Cette structure non-linéaire permet une exploration libre tout en racontant une histoire cohérente, optimisant la compréhension pour un visiteur qui découvre l'association. -->
+    <!-- Visualization & Content Choices: 
+        - Mission (Informer) -> Blocs HTML/CSS structurés : Présente clairement les 3 piliers sans distraction. L'interaction est volontairement limitée pour se concentrer sur le message.
+        - Impact Annuel (Comparer/Changer) -> Bar Chart (Chart.js) : Permet une comparaison facile de la croissance du nombre de participants au fil des ans. C'est un visuel classique, efficace et immédiatement compréhensible.
+        - Répartition Tech (Informer/Proportion) -> Doughnut Chart (Chart.js) : Montre la part de chaque technologie (VR/AR) dans les activités. C'est plus engageant qu'une simple liste et met en évidence la spécialisation de l'association.
+        - Événements (Organiser) -> Cartes HTML/CSS interactives : Structure l'information de manière digeste et visuellement attrayante. Une interaction au survol (hover) ajoute du dynamisme sans complexité.
+        - Justification globale : Les graphiques transforment des données abstraites (ici, fictives pour la démonstration) en preuves tangibles de l'impact, renforçant la crédibilité de l'association. Le choix de Chart.js (Canvas) respecte les contraintes techniques. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 40vh;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 smooth-scroll">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-gray-800">
+                <span class="text-blue-600">Gnut</span><span class="text-gray-500">06</span>
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#mission" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Mission</a>
+                <a href="#impact" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Impact</a>
+                <a href="#evenements" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Événements</a>
+                <a href="#contact" class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition-colors duration-300">Contact</a>
+            </div>
+             <button id="mobile-menu-button" class="md:hidden p-2 rounded-md">
+                <span class="w-6 h-0.5 bg-gray-600 block my-1"></span>
+                <span class="w-6 h-0.5 bg-gray-600 block my-1"></span>
+                <span class="w-6 h-0.5 bg-gray-600 block my-1"></span>
+            </button>
+        </nav>
+         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#mission" class="block py-2 text-gray-600 hover:text-blue-600">Mission</a>
+            <a href="#impact" class="block py-2 text-gray-600 hover:text-blue-600">Impact</a>
+            <a href="#evenements" class="block py-2 text-gray-600 hover:text-blue-600">Événements</a>
+            <a href="#contact" class="block mt-2 py-2 text-center bg-blue-600 text-white rounded-full hover:bg-blue-700">Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="bg-white">
+            <div class="container mx-auto px-6 py-20 md:py-32 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-4">
+                    L'innovation au service de l'inclusion
+                </h1>
+                <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+                    Gnut 06 est une association dédiée à l'utilisation de technologies immersives comme la réalité virtuelle et augmentée pour favoriser l'épanouissement et l'intégration sociale des personnes en situation de handicap.
+                </p>
+                <a href="#mission" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition duration-300 shadow-lg transform hover:scale-105">
+                    Découvrir notre mission
+                </a>
+            </div>
+        </section>
+
+        <!-- Mission Section -->
+        <section id="mission" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Au cœur de notre action</h2>
+                    <p class="text-lg text-gray-600 mt-2">Nous nous engageons à briser les barrières grâce à trois piliers fondamentaux.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-xl shadow-md text-center transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="inline-block bg-blue-100 text-blue-600 rounded-full p-4 mb-4 text-4xl">
+                            &#x1F4BB;
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Technologies Innovantes</h3>
+                        <p class="text-gray-600">Nous explorons le potentiel de la VR et de l'AR pour la rééducation, l'apprentissage et le divertissement adapté.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-md text-center transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="inline-block bg-green-100 text-green-600 rounded-full p-4 mb-4 text-4xl">
+                            &#x1F91D;
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Intégration Sociale</h3>
+                        <p class="text-gray-600">Nos ateliers et événements sont des lieux de rencontre, de partage et de création de lien social pour tous.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-md text-center transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="inline-block bg-red-100 text-red-600 rounded-full p-4 mb-4 text-4xl">
+                        &#x1F31F;
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Épanouissement Personnel</h3>
+                        <p class="text-gray-600">Nous offrons des expériences enrichissantes qui renforcent la confiance en soi et développent l'autonomie.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Impact Section -->
+        <section id="impact" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Notre Impact en chiffres</h2>
+                    <p class="text-lg text-gray-600 mt-2">Les données illustrent la portée de nos actions. Voici un aperçu de nos réalisations (données fictives pour démonstration).</p>
+                </div>
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-inner">
+                         <h3 class="text-xl font-bold mb-4 text-center text-gray-700">Participants par année</h3>
+                        <div class="chart-container">
+                            <canvas id="participantsChart"></canvas>
+                        </div>
+                         <p class="text-sm text-gray-500 mt-4 text-center">Ce graphique montre la croissance du nombre de personnes ayant participé à nos ateliers et événements, illustrant l'expansion de notre communauté.</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-inner">
+                         <h3 class="text-xl font-bold mb-4 text-center text-gray-700">Répartition des technologies</h3>
+                        <div class="chart-container">
+                            <canvas id="techDonutChart"></canvas>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-4 text-center">Ce visuel montre comment nos ateliers se répartissent entre la Réalité Virtuelle (VR) et la Réalité Augmentée (AR), nos deux cœurs de métier.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Events Section -->
+        <section id="evenements" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                 <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Prochains Événements</h2>
+                    <p class="text-lg text-gray-600 mt-2">Rejoignez-nous pour apprendre, partager et innover ensemble.</p>
+                </div>
+                <div class="space-y-12">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden md:flex transition-shadow duration-300 hover:shadow-2xl">
+                        <div class="md:w-1/3">
+                           <img class="h-56 md:h-full w-full object-cover" src="https://placehold.co/600x400/3B82F6/FFFFFF?text=Atelier+VR" alt="Atelier de réalité virtuelle">
+                        </div>
+                        <div class="p-8 md:w-2/3 flex flex-col justify-center">
+                          <p class="text-sm text-blue-600 font-semibold">25 SEPTEMBRE 2025 • NICE</p>
+                          <h3 class="text-2xl font-bold text-gray-900 mt-2 mb-4">Atelier Découverte de la Réalité Virtuelle</h3>
+                          <p class="text-gray-700 mb-6">Plongez dans des mondes virtuels et découvrez les applications thérapeutiques et ludiques de la VR. Ouvert à tous.</p>
+                          <div class="text-right">
+                            <a href="#contact" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-full hover:bg-blue-700 transition duration-300">
+                                S'inscrire
+                            </a>
+                          </div>
+                        </div>
+                    </div>
+                     <div class="bg-white rounded-lg shadow-lg overflow-hidden md:flex transition-shadow duration-300 hover:shadow-2xl">
+                        <div class="md:w-1/3">
+                           <img class="h-56 md:h-full w-full object-cover" src="https://placehold.co/600x400/10B981/FFFFFF?text=Conférence" alt="Conférence sur le futur de l'accessibilité">
+                        </div>
+                        <div class="p-8 md:w-2/3 flex flex-col justify-center">
+                          <p class="text-sm text-green-600 font-semibold">18 OCTOBRE 2025 • EN LIGNE</p>
+                          <h3 class="text-2xl font-bold text-gray-900 mt-2 mb-4">Conférence : Le Futur de l'Accessibilité</h3>
+                          <p class="text-gray-700 mb-6">Des experts partagent leur vision sur l'impact des technologies émergentes pour l'inclusion des personnes en situation de handicap.</p>
+                          <div class="text-right">
+                            <a href="#contact" class="bg-green-600 text-white font-bold py-2 px-6 rounded-full hover:bg-green-700 transition duration-300">
+                                En savoir plus
+                            </a>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 bg-blue-700 text-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold">Contactez-nous</h2>
+                <p class="text-lg text-blue-200 mt-2 mb-8 max-w-2xl mx-auto">
+                    Vous avez une question, un projet, ou souhaitez devenir bénévole ? N'hésitez pas à nous contacter.
+                </p>
+                <a href="mailto:contact@gnut06.fr" class="bg-white text-blue-700 font-bold py-3 px-8 rounded-full hover:bg-gray-200 transition duration-300 shadow-lg transform hover:scale-105">
+                    contact@gnut06.fr
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; <span id="footer-year"></span> Gnut 06. L'innovation pour l'inclusion.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Close mobile menu on link click
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+            
+            // Set footer year
+            document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+            // Chart.js common options
+            const chartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: '#4b5563', // text-gray-600
+                            font: {
+                                family: "'Inter', sans-serif"
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: '#e5e7eb' // text-gray-200
+                        },
+                        ticks: {
+                           color: '#4b5563' // text-gray-600
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                         ticks: {
+                           color: '#4b5563' // text-gray-600
+                        }
+                    }
+                }
+            };
+
+            // Participants Chart (Bar)
+            const participantsCtx = document.getElementById('participantsChart');
+            if (participantsCtx) {
+                new Chart(participantsCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['2022', '2023', '2024', '2025 (Proj.)'],
+                        datasets: [{
+                            label: 'Nombre de Participants',
+                            data: [45, 75, 130, 200],
+                            backgroundColor: 'rgba(59, 130, 246, 0.7)', // bg-blue-600
+                            borderColor: 'rgba(59, 130, 246, 1)',
+                            borderWidth: 1,
+                            borderRadius: 4
+                        }]
+                    },
+                    options: chartOptions
+                });
+            }
+
+            // Tech Donut Chart
+            const techDonutCtx = document.getElementById('techDonutChart');
+            if (techDonutCtx) {
+                new Chart(techDonutCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Réalité Virtuelle (VR)', 'Réalité Augmentée (AR)'],
+                        datasets: [{
+                            label: 'Utilisation',
+                            data: [70, 30],
+                            backgroundColor: [
+                                'rgba(59, 130, 246, 0.8)', // bg-blue-600
+                                'rgba(16, 185, 129, 0.8)' // bg-green-500
+                            ],
+                            borderColor: [
+                                'rgba(59, 130, 246, 1)',
+                                'rgba(16, 185, 129, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                     color: '#4b5563',
+                                     font: {
+                                        family: "'Inter', sans-serif"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
